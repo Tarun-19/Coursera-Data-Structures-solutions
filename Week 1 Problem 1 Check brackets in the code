@@ -1,0 +1,79 @@
+//Check brackets in the code
+//Checking balanced parenthesis
+
+////////////////////////////////Stack of pair implementation////////////////////////////////////////
+
+#include <bits/stdc++.h>
+#define FAST ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define ll long long int
+#define fab(i,a,b) for(i=a;i<=b;i++)
+using namespace std;
+int main()
+{
+    FAST;
+    ll n,t,x,i,j,k,l,p,q,f,m;
+    
+    string str;
+    cin>>str;
+    
+    
+    f=0;
+    stack<pair<char,ll>> sk;
+    
+    fab(i,0,str.size())
+    {
+        
+        pair<char,ll> pr=make_pair(str[i],i+1);
+        
+        if(str[i]=='{'||str[i]=='('||str[i]=='[')
+        sk.push(pr);
+        
+        if(str[i]=='}')
+        {
+            
+            if(sk.size()>=1&&(sk.top()).first=='{')
+            sk.pop();
+            else
+            {
+                f=pr.second;
+                break;
+            }
+            
+        }
+        if(str[i]==')')
+        {
+            
+            if(sk.size()>=1&&(sk.top()).first=='(')
+            sk.pop();
+            else
+            {
+                f=pr.second;
+                break;
+            }
+            
+        }
+        if(str[i]==']')
+        {
+            if(sk.size()>=1&&(sk.top()).first=='[')
+            sk.pop();
+            else
+            {
+                f=pr.second;
+                break;
+            }
+        }
+    }
+    
+    if(f>=1||sk.size()>0)
+    {
+        if(f>=1)
+        cout<<f;
+        else
+        cout<<(sk.top()).second;
+    }
+    else
+    cout<<"Success";
+    
+    
+	return 0;
+}
