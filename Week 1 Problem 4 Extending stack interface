@@ -1,0 +1,44 @@
+//Extending stack interface
+
+//Simple stack implementation with operations push() and pop()
+
+#include <bits/stdc++.h>
+#define FAST ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define ll long long int
+#define f0(i,n) for(i=0;i<n;i++)
+#define f1(i,n) for(i=1;i<=n;i++)
+#define ln "\n"
+using namespace std;
+int main()
+{
+    FAST;
+    ll t,x;
+    string s;
+    cin>>t;
+    stack <ll> sk;
+    stack <ll> mx;
+    while(t--)
+    {
+        cin>>s;
+        
+        if(s=="push")
+        {
+            cin>>x;
+            sk.push(x);
+            if(sk.size()==1||mx.top()<x)
+            mx.push(x);
+            else
+            mx.push(mx.top());
+        }
+        else if(s=="pop")
+        {
+            sk.pop();
+            mx.pop();
+        }
+        else
+        {
+            cout<<mx.top()<<ln;
+        }
+    }
+	return 0;
+}
